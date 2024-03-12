@@ -1,0 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,700;1,400;1,800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+input {
+    @apply font-poppins font-bold text-lg focus:outline-none focus:border-purple focus:ring-1 focus:caret-purple
+}

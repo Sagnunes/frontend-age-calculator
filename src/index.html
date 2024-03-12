@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- displays site properly based on user's device -->
+
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon-32x32.png">
+    <link href="./output.css" rel="stylesheet">
+    <title>Frontend Mentor | Age calculator app</title>
+    <script src="//unpkg.com/alpinejs" defer></script>
+    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+    <style>
+        .attribution {
+            font-size: 11px;
+            text-align: center;
+        }
+
+        .attribution a {
+            color: hsl(228, 45%, 44%);
+        }
+    </style>
+</head>
+<body class="bg-lightGrey">
+
+<main class="flex justify-center items-center mx-auto h-screen" x-data="calculator">
+    <section class="bg-white w-[347px] h-[486px] rounded-t-[24px] rounded-bl-[24px] rounded-br-[100px] py-12 px-6 md:w-[840px] md:h-[680px]">
+        <form class="grid grid-cols-3 md:grid-cols-5 gap-4 md:w-[700px]" x-on:submit.prevent>
+            <div class="flex flex-col">
+                <label for="day"
+                       class="font-poppins text-sm font-bold tracking-widest uppercase text-smokeyGrey"
+                       :class="error.includes('day') ? 'text-lightRed' : ''">Day</label>
+                <input type="number" id="day" class="mt-1 border border-lightGrey rounded-lg py-4 px-3" placeholder="DD"
+                       x-model="day" :class="error.includes('day') ? 'border-lightRed' : ''">
+                <span class="text-[8px] mt-1 text-lightRed font-poppins italic" x-show="error.includes('day')">Must be a valid day</span>
+            </div>
+            <div class="flex flex-col my-0 ">
+                <label for="month" class="font-poppins text-sm font-bold tracking-widest uppercase text-smokeyGrey"
+                       :class="error.includes('month') ? 'text-lightRed' : ''">Month</label>
+                <input type="number" id="month" class="mt-1 border border-lightGrey rounded-lg py-4 px-3"
+                       placeholder="MM" x-model="month" :class="error.includes('month') ? 'border-lightRed' : ''">
+                <span class="text-[8px] mt-1 text-lightRed font-poppins italic" x-show="error.includes('month')">Must be a valid month</span>
+            </div>
+            <div class="flex flex-col my-0">
+                <label for="year"
+                       class="font-poppins text-sm font-bold tracking-widest uppercase text-smokeyGrey"
+                       :class="error.includes('year') ? 'text-lightRed' : ''">Year</label>
+                <input type="number" id="year" class="mt-1 border border-lightGrey rounded-lg py-4 px-3"
+                       placeholder="YYYY" x-model="year" :class="error.includes('year') ? 'border-lightRed' : ''">
+                <span class="text-[8px] mt-1 text-lightRed font-poppins italic" x-show="error.includes('year')">Must be in the past</span>
+            </div>
+        </form>
+        <div class="flex mt-16 border-t border-t-lightGrey relative mx-auto justify-center" @click="calc" >
+            <div class="flex w-16 h-16 bg-purple rounded-full absolute top-[-32px] justify-center items-center hover:bg-offBack cursor-pointer">
+                <picture>
+                    <img src="../assets/images/icon-arrow.svg" alt="arrow icon" class="w-6 h-6">
+                </picture>
+            </div>
+        </div>
+
+        <div class="mt-12 space-y-[-30px]">
+            <div class="flex space-x-2">
+                <span class="font-poppins font-extrabold text-[56px] text-purple" x-text="resultYear ?? '--'"></span>
+                <p class="font-poppins font-extrabold text-[56px] text-offBack">
+                    years
+                </p>
+            </div>
+            <div class="flex space-x-2">
+                <span class="font-poppins font-extrabold text-[56px] text-purple" x-text="resultMonth ?? '--'"></span>
+                <p class="font-poppins font-extrabold text-[56px] text-offBack">
+                    months
+                </p>
+            </div>
+            <div class="flex space-x-2">
+                <span class="font-poppins font-extrabold text-[56px] text-purple" x-text="resultDay ?? '--'"></span>
+                <p class="font-poppins font-extrabold text-[56px] text-offBack">
+                    days
+                </p>
+            </div>
+        </div>
+    </section>
+</main>
+
+<div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
+    Coded by <a href="#">Your Name Here</a>.
+</div>
+</body>
+<script>
+    document.addEventListener("alpine:init", () => {
+        Alpine.data("calculator", () => ({
+            day: null,
+            month: null,
+            year: null,
+            isSubmitted: false,
+            currentYear: new Date().getFullYear(),
+            currentFullDate: new Date(),
+            error: [],
+            resultDay: null,
+            resultMonth: null,
+            resultYear: null,
+            calc() {
+                if (this.day === null || this.day < 0 || this.day > 31) {
+                    this.error.push('day')
+                }
+
+                if (this.month === null || this.month < 1 || this.month > 12) {
+                    this.error.push('month')
+                }
+
+                if (this.year === null || this.year === this.currentYear.toString() || this.year > this.currentYear.toString()) {
+                    this.error.push('year')
+                }
+
+                if (this.error.length === 0) {
+                    let result = this.currentYear - this.year
+
+                    // Calculate the age
+                    let ageInYears = this.currentFullDate.getFullYear() - this.year;
+                    let ageInMonths = this.currentFullDate.getMonth() + 1 - this.month;
+                    let ageInDays = this.currentFullDate.getDate() - this.day;
+
+                    // Adjust age based on negative values
+                    if (ageInDays < 0) {
+                        ageInMonths--;
+                        const daysInLastMonth = new Date(this.currentFullDate.getFullYear(), this.currentFullDate.getMonth(), 0).getDate();
+                        ageInDays += daysInLastMonth;
+                    }
+
+                    if (ageInMonths < 0) {
+                        ageInYears--;
+                        ageInMonths += 12;
+                    }
+
+                    this.resultYear = ageInYears
+                    this.resultMonth = ageInMonths
+                    this.resultDay = ageInDays
+
+                    console.log(this.day,this.month,this.year)
+                    console.log(ageInDays,ageInMonths,ageInYears)
+                }
+            },
+        }));
+    });
+</script>
+</html>
