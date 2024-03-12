@@ -33,14 +33,14 @@
                        :class="error.includes('day') ? 'text-lightRed' : ''">Day</label>
                 <input type="number" id="day" class="mt-1 border border-lightGrey rounded-lg py-4 px-3" placeholder="DD"
                        x-model="day" :class="error.includes('day') ? 'border-lightRed' : ''">
-                <span class="text-[8px] mt-1 text-lightRed font-poppins italic" x-show="error.includes('day')">Must be a valid day</span>
+                <span class="text-[8px] mt-1 text-lightRed font-poppins italic md:text-sm" x-show="error.includes('day')">Must be a valid day</span>
             </div>
             <div class="flex flex-col my-0 ">
                 <label for="month" class="font-poppins text-sm font-bold tracking-widest uppercase text-smokeyGrey"
                        :class="error.includes('month') ? 'text-lightRed' : ''">Month</label>
                 <input type="number" id="month" class="mt-1 border border-lightGrey rounded-lg py-4 px-3"
                        placeholder="MM" x-model="month" :class="error.includes('month') ? 'border-lightRed' : ''">
-                <span class="text-[8px] mt-1 text-lightRed font-poppins italic" x-show="error.includes('month')">Must be a valid month</span>
+                <span class="text-[8px] mt-1 text-lightRed font-poppins italic md:text-sm" x-show="error.includes('month')">Must be a valid month</span>
             </div>
             <div class="flex flex-col my-0">
                 <label for="year"
@@ -48,7 +48,7 @@
                        :class="error.includes('year') ? 'text-lightRed' : ''">Year</label>
                 <input type="number" id="year" class="mt-1 border border-lightGrey rounded-lg py-4 px-3"
                        placeholder="YYYY" x-model="year" :class="error.includes('year') ? 'border-lightRed' : ''">
-                <span class="text-[8px] mt-1 text-lightRed font-poppins italic" x-show="error.includes('year')">Must be in the past</span>
+                <span class="text-[8px] mt-1 text-lightRed font-poppins italic md:text-sm" x-show="error.includes('year')">Must be in the past</span>
             </div>
         </form>
         <div class="flex mt-16 border-t border-t-lightGrey relative mx-auto justify-center" @click="calc">

@@ -855,4 +855,9 @@ input:focus{
   .md\:text-\[104px\]{
     font-size: 104px;
   }
+
+  .md\:text-sm{
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
 }
