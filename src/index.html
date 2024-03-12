@@ -26,7 +26,7 @@
 <main class="flex justify-center items-center mx-auto h-screen" x-data="calculator">
     <section
             class="bg-white w-[347px] h-[486px] rounded-t-[24px] rounded-bl-[24px] rounded-br-[100px] py-12 px-6 md:w-[840px] md:h-[680px]">
-        <form class="grid grid-cols-3 md:grid-cols-5 gap-4 md:w-[700px]" x-on:submit.prevent>
+        <form class="grid grid-cols-3 md:grid-cols-4 gap-4 md:w-[700px]" x-on:submit.prevent>
             <div class="flex flex-col">
                 <label for="day"
                        class="font-poppins text-sm font-bold tracking-widest uppercase text-smokeyGrey"
@@ -52,7 +52,7 @@
             </div>
         </form>
         <div class="flex mt-16 border-t border-t-lightGrey relative mx-auto justify-center" @click="calc">
-            <div class="flex w-16 h-16 bg-purple rounded-full absolute top-[-32px] justify-center items-center hover:bg-offBack cursor-pointer">
+            <div class="flex w-16 h-16 bg-purple rounded-full absolute top-[-32px] justify-center items-center hover:bg-offBack cursor-pointer md:right-0">
                 <picture>
                     <img src="../assets/images/icon-arrow.svg" alt="arrow icon" class="w-6 h-6">
                 </picture>
@@ -61,20 +61,20 @@
 
         <div class="mt-12 space-y-[-30px]">
             <div class="flex space-x-2">
-                <span class="font-poppins font-extrabold text-[56px] text-purple" x-text="resultYear ?? '--'"></span>
-                <p class="font-poppins font-extrabold text-[56px] text-offBack">
+                <span class="font-poppins font-extrabold text-[56px] text-purple md:text-[104px]" x-text="resultYear ?? '--'"></span>
+                <p class="font-poppins font-extrabold text-[56px] text-offBack md:text-[104px]">
                     years
                 </p>
             </div>
             <div class="flex space-x-2">
-                <span class="font-poppins font-extrabold text-[56px] text-purple" x-text="resultMonth ?? '--'"></span>
-                <p class="font-poppins font-extrabold text-[56px] text-offBack">
+                <span class="font-poppins font-extrabold text-[56px] text-purple md:text-[104px]" x-text="resultMonth ?? '--'"></span>
+                <p class="font-poppins font-extrabold text-[56px] text-offBack md:text-[104px]">
                     months
                 </p>
             </div>
             <div class="flex space-x-2">
-                <span class="font-poppins font-extrabold text-[56px] text-purple" x-text="resultDay ?? '--'"></span>
-                <p class="font-poppins font-extrabold text-[56px] text-offBack">
+                <span class="font-poppins font-extrabold text-[56px] text-purple md:text-[104px]" x-text="resultDay ?? '--'"></span>
+                <p class="font-poppins font-extrabold text-[56px] text-offBack md:text-[104px]">
                     days
                 </p>
             </div>
@@ -93,7 +93,6 @@
             day: null,
             month: null,
             year: null,
-            isSubmitted: false,
             currentYear: new Date().getFullYear(),
             currentFullDate: new Date(),
             error: [],
