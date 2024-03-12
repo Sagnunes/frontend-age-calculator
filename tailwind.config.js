@@ -13,6 +13,7 @@ module.exports = {
       purple:"hsl(259, 100%, 65%)",
       smokeyGrey:"hsl(0, 1%, 44%)",
       offBack:"hsl(0, 0%, 8%)",
+      offWhite:"hsl(0,0%,94%)",
       lightRed:'hsl(0, 100%, 67%)'
     }
   },
