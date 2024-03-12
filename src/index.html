@@ -24,7 +24,8 @@
 <body class="bg-lightGrey">
 
 <main class="flex justify-center items-center mx-auto h-screen" x-data="calculator">
-    <section class="bg-white w-[347px] h-[486px] rounded-t-[24px] rounded-bl-[24px] rounded-br-[100px] py-12 px-6 md:w-[840px] md:h-[680px]">
+    <section
+            class="bg-white w-[347px] h-[486px] rounded-t-[24px] rounded-bl-[24px] rounded-br-[100px] py-12 px-6 md:w-[840px] md:h-[680px]">
         <form class="grid grid-cols-3 md:grid-cols-5 gap-4 md:w-[700px]" x-on:submit.prevent>
             <div class="flex flex-col">
                 <label for="day"
@@ -50,7 +51,7 @@
                 <span class="text-[8px] mt-1 text-lightRed font-poppins italic" x-show="error.includes('year')">Must be in the past</span>
             </div>
         </form>
-        <div class="flex mt-16 border-t border-t-lightGrey relative mx-auto justify-center" @click="calc" >
+        <div class="flex mt-16 border-t border-t-lightGrey relative mx-auto justify-center" @click="calc">
             <div class="flex w-16 h-16 bg-purple rounded-full absolute top-[-32px] justify-center items-center hover:bg-offBack cursor-pointer">
                 <picture>
                     <img src="../assets/images/icon-arrow.svg" alt="arrow icon" class="w-6 h-6">
@@ -100,6 +101,8 @@
             resultMonth: null,
             resultYear: null,
             calc() {
+
+                this.error = [];
                 if (this.day === null || this.day < 0 || this.day > 31) {
                     this.error.push('day')
                 }
@@ -136,8 +139,8 @@
                     this.resultMonth = ageInMonths
                     this.resultDay = ageInDays
 
-                    console.log(this.day,this.month,this.year)
-                    console.log(ageInDays,ageInMonths,ageInYears)
+                    console.log(this.day, this.month, this.year)
+                    console.log(ageInDays, ageInMonths, ageInYears)
                 }
             },
         }));
